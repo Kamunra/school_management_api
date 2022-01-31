@@ -64,13 +64,13 @@ class Teacher extends Person{
     }
 
     setAnnualSalary(){
-        let calculateBonus = function(year_bonus,base_bonus,bonus_coef){
-            const years = new Date().getFullYear()-this.year_rec;
+        let calculateBonus = function(year_bonus,base_bonus,bonus_coef, year_rec){
+            const years = new Date().getFullYear()-year_rec;
             if(years>year_bonus){
                 return base_bonus*Math.pow(bonus_coef,years-year_bonus);
             }
         }
-        this.#annual_salary = this.#salary + calculateBonus(this.#year_bonus,this.#base_bonus,this.#bonus_coef);
+        this.#annual_salary = this.#salary + calculateBonus(this.#year_bonus,this.#base_bonus,this.#bonus_coef, this.year_rec);
     }
 }
 
@@ -187,4 +187,7 @@ class teacherService{
     }
 }
 
-module.exports = teacherService;
+module.exports = {
+    Teacher : Teacher,
+    teacherService : teacherService
+} 

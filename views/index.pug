@@ -3,3 +3,11 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
+  p At the moment b #{num_students}  students study here.
+  p They are taught by #{num_teachers} teachers.
+  p Considering the students that pay fees and paying teacher salaries, the school bydget is #{budget}
+  p Checkout our databases 
+  p  
+    a(class="btn btn-outline-primary btn-sm", href="./classes", role="button") Classes
+    a(class="btn btn-outline-success btn-sm", href="./students", role="button") Students
+    a(class="btn btn-outline-dark btn-sm", href="./teachers", role="button") Teachers

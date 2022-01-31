@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const studentService = require('../class_files/students.js');
+const studentService = require('../class_files/students.js').studentService;
 
 // read students
 router.get('/students', (request, response) => {

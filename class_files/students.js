@@ -9,7 +9,7 @@ class Student extends Person{
         super(first_name,last_name);
         this.has_fee=1; 
 
-        this.#fees=3500;
+        this.#fees=4500;
     };
 
     getStudentId(){
@@ -247,4 +247,7 @@ class studentService{
     }
 }
 
-module.exports = studentService;
+module.exports = {
+    Student : Student,
+    studentService : studentService
+}
