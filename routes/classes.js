@@ -1,3 +1,4 @@
+const { request, response } = require('express');
 const express = require('express');
 const router = express.Router();
 
@@ -10,9 +11,13 @@ router.get('/classes', (request, response) => {
   const result = db.AllClassData();
   
   result
-  .then(data => response.json(data))
+  .then(data => response.render('classes', { data: data }))
   .catch(err => console.log(err));
 })
+
+// router.get('/classes/insertForm', (request, response) => {
+//   response.render('classInsert');
+// })
 
 // create and insert class
 router.post('/classes/insert', (request, response) => {

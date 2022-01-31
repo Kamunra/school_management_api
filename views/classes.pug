@@ -1,0 +1,27 @@
+extends layout
+
+block content
+    h1 Classes 
+    table(class="table table-primary table-striped")
+        thead 
+            tr 
+                th(scope="col") id 
+                th(scope="col") class_name
+                th(scope="col") num_students
+                th(scope="col") Edit Name 
+                th(scope="col") Delete Row
+        tbody 
+            each row in data
+                tr 
+                    th(scope="col")= row.class_id
+                    td= row.class_name 
+                    td= row.num_students
+                    td 
+                        button(type="button" class="btn btn-warning btn-sm" disabled) Edit
+                    td 
+                        button(type="button" class="btn btn-danger btn-sm" disabled) Delete
+
+
+    p  
+        a(class="btn btn-outline-info btn-md", href="./classes/insertForm", role="button", onclick="return false;") Insert New Record
+    
