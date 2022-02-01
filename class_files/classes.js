@@ -34,13 +34,21 @@ class school_class{
             console.log(error);
         }
     }
+
+    getPrimaryTeacher(){
+        return this.pr_teacher;
+    }
+
+    setPrimaryTeacher(full_name){
+        this.pr_teacher = full_name;
+    }
 }
 
 class classService{
     async AllClassData() {
         try {
             const response = await new Promise((resolve, reject) => {
-                const query = "SELECT * FROM Classes;";
+                const query = "SELECT Classes.class_id, Classes.class_name, CONCAT(Teachers.first_name,' ',Teachers.last_name) AS pr_teacher FROM Classes LEFT JOIN `Teachers` ON Classes.teacher_id = Teachers.teacher_id;";
 
                 db.query(query, (err, results) => {
                     if (err) reject(new Error(err.message));
@@ -83,6 +91,26 @@ class classService{
                 const query = "UPDATE Classes SET class_name = ? WHERE class_id = ?";
     
                 db.query(query, [name, id] , (err, result) => {
+                    if (err) reject(new Error(err.message));
+                    resolve(result.affectedRows);
+                })
+            });
+    
+            return response === 1 ? true : false;
+        } catch (error) {
+            console.log(error);
+            return false;
+        }
+    }
+
+    async updateClassPrimaryTeacherById(id, teacher_id) {
+        try {
+            id = parseInt(id, 10); 
+            // teacher_id = parseInt(id, 10);
+            const response = await new Promise((resolve, reject) => {
+                const query = "UPDATE Classes SET teacher_id = ? WHERE class_id = ?";
+    
+                db.query(query, [teacher_id, id] , (err, result) => {
                     if (err) reject(new Error(err.message));
                     resolve(result.affectedRows);
                 })

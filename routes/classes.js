@@ -43,6 +43,17 @@ router.patch('/classes/update', (request, response) => {
   .catch(err => console.log(err));
 });
 
+router.patch('/classes/updatePrimeTeacher', (request, response) => {
+  const { id, teacher_id } = request.body;
+  const db = new classService();
+
+  const result = db.updateClassPrimaryTeacherById(id, teacher_id);
+  
+  result
+  .then(data => response.json({success : data}))
+  .catch(err => console.log(err));
+});
+
 // delete row by id
 router.delete('/classes/delete', (request, response) => {
   const { id } = request.body;

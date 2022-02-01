@@ -8,6 +8,7 @@ block content
                 th(scope="col") id 
                 th(scope="col") class_name
                 th(scope="col") num_students
+                th(scope="col") primary_teacher
                 th(scope="col") Edit Name 
                 th(scope="col") Delete Row
         tbody 
@@ -16,6 +17,7 @@ block content
                     th(scope="col")= row.class_id
                     td= row.class_name 
                     td= row.num_students
+                    td= row.pr_teacher
                     td 
                         button(type="button" class="btn btn-warning btn-sm" disabled) Edit
                     td 
